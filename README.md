@@ -1,3 +1,20 @@
+# The Ultimate build guide (for conffuzz)
+```
+mkdir build
+cd build
+cmake -G"Unix Makefiles" -DCONFIG=cuav_x7pro_default -DCMAKE_C_FLAGS="-fdump-tree-optimized-graph -fno-devirtualize" -DCMAKE_CXX_FLAGS="-fdump-tree-optimized-graph -fno-devirtualize -fdump-lang-class" ../
+make
+# ^ this emits error
+
+python3 \
+    ../src/modules/uxrce_dds_client/generate_dds_topics.py \
+    --topic-msg-dir ../msg \
+    --client-outdir ./src/modules/uxrce_dds_client/ \
+    --dds-topics-file ../src/modules/uxrce_dds_client/dds_topics.yaml \
+    --template_file ../src/modules/uxrce_dds_client/dds_topics.h.em
+```
+
+
 # PX4 Drone Autopilot
 
 [![Releases](https://img.shields.io/github/release/PX4/PX4-Autopilot.svg)](https://github.com/PX4/PX4-Autopilot/releases) [![DOI](https://zenodo.org/badge/22634/PX4/PX4-Autopilot.svg)](https://zenodo.org/badge/latestdoi/22634/PX4/PX4-Autopilot)

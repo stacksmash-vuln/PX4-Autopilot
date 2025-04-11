@@ -44,6 +44,9 @@ function(px4_add_common_flags)
 
 	add_compile_options(
 		-g # always build debug symbols
+		-fdump-tree-optimized-graph
+		-fno-devirtualize
+		-fstack-usage
 
 		# optimization options
 		-fdata-sections
@@ -156,7 +159,7 @@ function(px4_add_common_flags)
 	set(cxx_flags)
 	list(APPEND cxx_flags
 		-Wreorder
-
+		-fdump-lang-class
 		# disabled warnings
 		-Wno-overloaded-virtual # TODO: fix and remove
 	)
